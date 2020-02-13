@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+  <node name="leg_finder" pkg="leg_finder" type="leg_finder_turtle" output="screen" args="--hyp">
+    <param name="obst_xmin" value="0.0"/>
+    <param name="obst_xmax" value="0.25"/>
+    <param name="obst_ymin" value="-0.01"/>
+    <param name="obst_ymax" value="0.01"/>
+    <param name="obst_div" value="9"/>
+  </node>
+  
+  <node name="human_follower" pkg="human_follower" type="human_follower_node" output="screen"/>
+  
+  <node name="laser_manager" pkg="laser_manager" type="laser_manager_node" output="screen"/>
+
+  <group>
+    <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+      <param name="serial_port" type="string" value="/dev/sensors/hokuyo_H1107988" />
+      <param name="frame_id" type="string" value="laser_link" />
+      <remap from="scan" to="real_scan"/>
+    </node>
+  </group>
+  
+</launch>

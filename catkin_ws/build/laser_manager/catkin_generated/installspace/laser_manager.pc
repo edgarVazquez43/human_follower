@@ -1,0 +1,8 @@
+prefix=/home/roboworks/repos/laser_mannager/catkin_ws/install
+
+Name: laser_manager
+Description: Description of laser_manager
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/roboworks/repos/laser_mannager/catkin_ws/install/lib 
+Requires: 

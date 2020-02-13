@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/roboworks/repos/laser_mannager/catkin_ws/devel/setup.sh

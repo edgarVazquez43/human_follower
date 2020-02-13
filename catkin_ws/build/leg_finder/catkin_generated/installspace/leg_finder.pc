@@ -1,0 +1,8 @@
+prefix=/home/roboworks/repos/laser_mannager/catkin_ws/install
+
+Name: leg_finder
+Description: Description of leg_finder
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/roboworks/repos/laser_mannager/catkin_ws/install/lib 
+Requires: 

@@ -1,0 +1,2 @@
+human_follower:laser_manager:leg_finder
+-DCATKIN_DEVEL_PREFIX=/home/roboworks/repos/laser_mannager/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/roboworks/repos/laser_mannager/catkin_ws/install -G Unix Makefiles
