@@ -18,7 +18,7 @@ In order to not be confudsed with sensor USB devices set the specific ID for eac
 
 You need create a new rule file, or copy the rule file provide on this repository with the next command:
 
-sudo cp ToInstall/USB/80-turtlebot.rules /etc/udev/rules.d/
+sudo cp toInstall/80-turtlebot.rules /etc/udev/rules.d/
 
 
 after that you need restart the udev rules:
