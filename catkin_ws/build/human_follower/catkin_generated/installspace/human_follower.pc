@@ -1,8 +1,0 @@
-prefix=/home/roboworks/repos/laser_mannager/catkin_ws/install
-
-Name: human_follower
-Description: Description of human_follower
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/roboworks/repos/laser_mannager/catkin_ws/install/lib 
-Requires: 
