@@ -465,10 +465,10 @@ int main(int argc, char** argv)
     if(ros::param::has("~obst_div"))
         ros::param::get("~obst_div", obst_div);
 
-    ros::Subscriber subEnable = n->subscribe("/hri/leg_finder/enable", 1, callback_enable);
-    pub_legs_hypothesis = n->advertise<visualization_msgs::Marker>("/hri/visualization_marker", 1);
-    pub_legs_pose       = n->advertise<geometry_msgs::PointStamped>("/hri/leg_finder/leg_poses", 1);
-    pub_legs_found      = n->advertise<std_msgs::Bool>("/hri/leg_finder/legs_found", 1);            
+    ros::Subscriber subEnable = n->subscribe("/leg_finder/enable", 1, callback_enable);
+    pub_legs_hypothesis = n->advertise<visualization_msgs::Marker>("/visualization_marker", 1);
+    pub_legs_pose       = n->advertise<geometry_msgs::PointStamped>("/leg_finder/leg_poses", 1);
+    pub_legs_found      = n->advertise<std_msgs::Bool>("/leg_finder/legs_found", 1);            
     //n->getParam("~frame_id", frame_id);
     if(ros::param::has("~base_range_sensor_link"))
         ros::param::get("~base_range_sensor_link", frame_id);

@@ -26,6 +26,13 @@ after that you need restart the udev rules:
 sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
 
 
+Please, unplug the laser sensor and plug-in again. if you type 'ls /dev/sensor' you should see in terminal something like:
+
+'hokuyo_H1107995'
+
+
+
+
 # Human Follower
 
 This work was developed for PUMAS team as a degree work for some National Autonomous University of Mexico. This work is based on leg_finder algorithms and some trackers.
