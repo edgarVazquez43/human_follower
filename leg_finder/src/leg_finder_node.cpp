@@ -430,7 +430,7 @@ void callback_enable(const std_msgs::Bool::ConstPtr& msg)
 {
     if(msg->data){
         std::cout<<"legfinder--> enable"<<std::endl;
-        subLaserScan = n->subscribe("/scan", 1, callback_scan);
+        subLaserScan = n->subscribe("/scan_wrt_robot", 1, callback_scan);
     }
     else
     {
@@ -473,7 +473,7 @@ int main(int argc, char** argv)
     if(ros::param::has("~base_range_sensor_link"))
         ros::param::get("~base_range_sensor_link", frame_id);
     if(frame_id.compare("") == 0)
-        frame_id = "base_range_sensor_link";
+        frame_id = "laser";
 
     ros::Rate loop(20);
 
