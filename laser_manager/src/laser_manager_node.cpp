@@ -6,7 +6,6 @@
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 #include "sensor_msgs/LaserScan.h"
 #include "tf/transform_listener.h"
-#include "occupancy_grid_utils/ray_tracer.h"
 #include "rosbag/bag.h"
 #include "rosbag/view.h"
 #include <boost/foreach.hpp>

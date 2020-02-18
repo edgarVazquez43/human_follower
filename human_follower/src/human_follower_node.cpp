@@ -48,12 +48,14 @@ geometry_msgs::Twist calculate_speeds(float goal_x, float goal_y)
 	result.linear.y  = 0;
 	result.angular.z =1.2* max_angular * (2 / (1 + exp(-angle_error / beta)) - 1);
     }
+
+    std::cout << "calculated speeds:  " << result << std::endl;
     return result;
 }
 
 void callback_legs_pose(const geometry_msgs::PointStamped::ConstPtr& msg)
 {
-    if(msg->header.frame_id.compare("base_range_sensor_link") != 0)
+    if(msg->header.frame_id.compare("base_link") != 0)
     {
 	std::cout << "LegFinder.->WARNING!! Leg positions must be expressed wrt robot" << std::endl;
 	return;
@@ -78,7 +80,7 @@ void callback_enable(const std_msgs::Bool::ConstPtr& msg)
     if(msg->data)
     {
 	std::cout << "LegFinder.->Enable recevied" << std::endl;
-	sub_legs_pose = n->subscribe("/hri/leg_finder/leg_poses", 1, callback_legs_pose);      
+	sub_legs_pose = n->subscribe("/leg_finder/leg_poses", 1, callback_legs_pose);      
 	pub_cmd_vel   = n->advertise<geometry_msgs::Twist>("/mobile_base/commands/velocity", 1);
 	pub_head_pose = n->advertise<std_msgs::Float32MultiArray>("/manipulation/manip_pln/hd_goto_angles", 1);
     sub_pot_fields = n->subscribe("/navigation/obs_avoid/pot_fields/rejective_force", 1, callback_pot_fields);
@@ -110,7 +112,7 @@ int main(int argc, char** argv)
     std::cout << "INITIALIZING HUMAN FOLLOWER BY MARCOSOFT..." << std::endl;
     ros::init(argc, argv, "human_follower");
     n = new ros::NodeHandle();
-    ros::Subscriber sub_enable = n->subscribe("/hri/human_following/start_follow", 1, callback_enable);
+    ros::Subscriber sub_enable = n->subscribe("/human_following/start_follow", 1, callback_enable);
     ros::Rate loop(20);
 
 

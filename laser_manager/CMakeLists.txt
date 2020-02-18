@@ -10,7 +10,6 @@ project(laser_manager)
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_msgs
-  occupancy_grid_utils
   rosbag
   roscpp
   rospy

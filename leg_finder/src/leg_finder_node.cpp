@@ -367,7 +367,7 @@ void callback_scan(const sensor_msgs::LaserScan::Ptr& msg)
 
         bool fobst_in_front = false;
 
-        std::cout << "obst_div" << obst_div << std::endl;
+        std::cout << "obst_div: " << obst_div << std::endl;
         if(!(legs_x_filter_output[0] >= obst_xmin && legs_x_filter_output[0] <= obst_xmax && legs_y_filter_output[0] >= obst_ymin && legs_y_filter_output[0] <= obst_ymax))
             fobst_in_front = obst_in_front(oriLaser, obst_xmin, obst_xmax, obst_ymin, obst_ymax, 126.0 / obst_div * (obst_xmax - obst_xmin));
 
@@ -473,7 +473,7 @@ int main(int argc, char** argv)
     if(ros::param::has("~base_range_sensor_link"))
         ros::param::get("~base_range_sensor_link", frame_id);
     if(frame_id.compare("") == 0)
-        frame_id = "laser";
+        frame_id = "base_link";
 
     ros::Rate loop(20);
 
