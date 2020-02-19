@@ -13,11 +13,12 @@ If not, you can installed with the follow command:
 > sudo apt-get install ros-kinetic-urg-node
 
 After that you can check the ID device of the URG sensor.
-`rosrun urg_node getID /dev/ttyACM0`
+
+> rosrun urg_node getID /dev/ttyACM0
 
 You should see something like that:
 
-> Device at /dev/ttyACM0 has ID H0807228
+`Device at /dev/ttyACM0 has ID H0807228`
 
 In order to not be confused with sensor USB devices set the specific ID for each device configure the system rules. You can find those in:
 
@@ -35,11 +36,11 @@ after that you need restart the udev rules:
 
 Please, unplug the laser sensor and plug-in again. if you type 
 
-`ls /dev/sensor` 
+> ls /dev/sensor
 
 you should see in terminal something like:
 
-> hokuyo_H1107988
+`hokuyo_H1107988`
 
 Please make sure that change the ID_device into `human_follower/launch/human_follower.launch`
 
@@ -106,7 +107,10 @@ A launch file can be used for launch the ROS nodes needed, it is located in `hum
 
 > rostopic pub /leg_finder/enable std_msgs/Bool "data: true" 
 
-You should see a marker in Rviz.
+
+**You should see a marker in Rviz.**
+`/hri/visualization_marker`
+
 
 The `/leg_finder/legs_found` topic will be published when human legs were found whit a `true` value, otherwise the topic will be published with a `false` value when the human legs are lost.
 
