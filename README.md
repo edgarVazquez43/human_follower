@@ -1,6 +1,13 @@
-# laser_mannager
+# Human Follower
 
-This project is for work with laser sensor URG and followme task for turtlebot
+This work was developed for PUMAS team as a degree work for some National Autonomous University of Mexico. This work is based on leg_finder algorithms and some trackers.
+
+The package contains two ROS nodes, `human_follower` and `leg_finder`, these two ROS node contain some publisher and subscribers very useful.
+
+
+## Install
+
+This project is for work with laser sensor URG and follow me task for turtlebot
 
 -------------------------------
 
@@ -31,13 +38,9 @@ Please, unplug the laser sensor and plug-in again. if you type 'ls /dev/sensor' 
 'hokuyo_H1107995'
 
 
+-----------------------------------------------------------------
 
-
-# Human Follower
-
-This work was developed for PUMAS team as a degree work for some National Autonomous University of Mexico. This work is based on leg_finder algorithms and some trackers.
-
-The package contains two ROS nodes, `human_follower` and `leg_finder`, these two ROS node contain some publisher and subscribers very useful.  
+##Info
 
 ### `leg_finder`
  - Publishers:
