@@ -7,38 +7,61 @@ The package contains two ROS nodes, `human_follower` and `leg_finder`, these two
 
 ## Install
 
-This project is for work with laser sensor URG and follow me task for turtlebot
+The aim of this project is provide some ROS packages to detect a legs person and tracking using laser sensor URG and turtlebot.
 
 -------------------------------
 
-Need to be installed ros urg node:
+Please make sure that some ROS packages are already installed:
 
-sudo apt-get install ros-kinetic-urg-node
+- ros-kinetic-urg-node
 
-$ rosrun urg_node getID /dev/ttyACM0
+If not, you can installed with the follow command: 
 
-Device at /dev/ttyACM0 has ID H0807228
+> sudo apt-get install ros-kinetic-urg-node
 
-In order to not be confudsed with sensor USB devices set the specific ID for each device configure the system rules. You can find those in:
+After that you can check the ID device of the URG sensor.
+
+> rosrun urg_node getID /dev/ttyACM0
+
+You should see something like that:
+
+`Device at /dev/ttyACM0 has ID H0807228`
+
+In order to not be confused with sensor USB devices set the specific ID for each device configure the system rules. You can find those in:
 
 /etc/udev/rules.d/
 
 You need create a new rule file, or copy the rule file provide on this repository with the next command:
 
-sudo cp toInstall/80-turtlebot.rules /etc/udev/rules.d/
+> sudo cp toInstall/80-turtlebot.rules /etc/udev/rules.d/
 
 
 after that you need restart the udev rules:
 
-sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
+> sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
 
 
-Please, unplug the laser sensor and plug-in again. if you type 'ls /dev/sensor' you should see in terminal something like:
+Please, unplug the laser sensor and plug-in again. if you type 
 
-'hokuyo_H1107995'
+> ls /dev/sensor
+
+you should see in terminal something like:
+
+`hokuyo_H1107988`
+
+Please make sure that change the ID_device into `human_follower/launch/human_follower.launch`
+
+In the lines:
+
+`<param name="serial_port" type="string" value="/dev/sensors/$ID_DEVICE" />`
+
+For example:
+
+`<param name="serial_port" type="string" value="/dev/sensors/hokuyo_H1107988" />`
 
 
------------------------------------------------------------------
+
+------------------------------------
 
 ##Info
 
@@ -81,11 +104,24 @@ Please, unplug the laser sensor and plug-in again. if you type 'ls /dev/sensor' 
 		 - topic_name: `/navigation/obs_avoid/pot_fields/rejective_force`
 		 - topic_type:
 
-*Note: please note that the complete name of the topics can be different if you are using a launch file for running the `human_folower` and `leg_finder` nodes. For instance, if you are using `takeshi.launch` the name for the start topic belong to `hri` (Human Robot Interaction) namespace, so the complete topic name might be  `/hri/human_following/start_follow`, and so on.
-
-
+*Note: please note that the complete name of the topics can be different if you are using a launch file for running the `human_folower` and `leg_finder` nodes. 
 
 ## Use
-A launch file can be used for launch the ROS nodes needed, it is located in `takeshi_start/launch/human_follower.launch`, once the two ROS nodes are running `leg_finder_node` will be waiting for the topic `/hri/leg_finder/enable` when it occur  the leg_finder will be looking for human legs. The `/hri/leg_finder/legs_found` topic will be published when human legs were found whit a `True` value, otherwise the topic will be published with a `False` value when the human legs are lost.
+A launch file can be used for launch the ROS nodes needed, it is located in `human_follower/launch/human_follower.launch`, once the two ROS nodes are running `leg_finder_node` will be waiting for the topic `/leg_finder/enable` when it occur  the leg_finder will be looking for human legs. 
 
-Once you have received the topic that legs were found, you need publish the topic `/hri/human_following/start_follow` with a `True` value for enable the robot movement. For stop human tracking you need publish it once again with a `False` value.
+> rostopic pub /leg_finder/enable std_msgs/Bool "data: true" 
+
+
+**You should see a marker in Rviz.**
+`/hri/visualization_marker`
+
+
+The `/leg_finder/legs_found` topic will be published when human legs were found whit a `true` value, otherwise the topic will be published with a `false` value when the human legs are lost.
+
+Once you have received the topic that legs were found, you need publish the topic `/human_following/start_follow` with a `True` value for enable the robot movement. 
+
+> rostopic pub /human_following/start_follow std_msgs/Bool "data: true" 
+
+For **stop** human tracking you need publish it once again with a `False` value.
+
+> rostopic pub /human_following/start_follow std_msgs/Bool "data: false" 
