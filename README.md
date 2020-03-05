@@ -63,7 +63,7 @@ For example:
 
 ------------------------------------
 
-##Info
+## Info
 
 ### `leg_finder`
  - Publishers:
